@@ -1,0 +1,8 @@
+# Suggerimento UI. L'epicentro reale è la città inserita nella ricerca.
+location:
+  city: ""
+  country: Italy
+  postal_code: ""
+  latitude: null
+  longitude: null
+  radius_km: 10

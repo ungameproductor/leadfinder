@@ -1,0 +1,32 @@
+# Pesi e soglie modificabili senza cambiare il codice.
+# Valori positivi aumentano la priorità commerciale; valori negativi la riducono.
+
+weights:
+  no_website: 55
+  unreachable_website: 30
+  very_low_quality: 25
+  not_responsive: 20
+  public_email: 10
+  phone: 5
+  local_presence: 10
+  modern_complete: -20
+  insufficient_data: -10
+
+thresholds:
+  priority_a: 70
+  priority_b: 40
+  quality_very_low: 35
+  quality_modern: 75
+
+quality_weights:
+  no_https: -20
+  unreachable: -40
+  no_viewport: -15
+  obsolete_tech: -15
+  http_errors: -15
+  missing_cta: -8
+  slow_ttfb: -8
+  https_ok: 8
+  viewport_ok: 8
+  contact_info: 10
+  modern_markup: 8

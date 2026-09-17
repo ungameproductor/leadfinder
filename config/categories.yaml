@@ -1,0 +1,77 @@
+categories:
+  - id: ristorante
+    label: Ristorante
+    search_query: ristorante
+    google_type: restaurant
+  - id: pizzeria
+    label: Pizzeria
+    search_query: pizzeria
+    google_type: pizza_restaurant
+  - id: bar
+    label: Bar
+    search_query: bar
+    google_type: bar
+  - id: parrucchiere
+    label: Parrucchiere
+    search_query: parrucchiere
+    google_type: hair_salon
+  - id: centro_estetico
+    label: Centro estetico
+    search_query: centro estetico
+    google_type: beauty_salon
+  - id: palestra
+    label: Palestra
+    search_query: palestra
+    google_type: gym
+  - id: studio_professionale
+    label: Studio professionale
+    search_query: studio professionale
+    google_type: null
+  - id: dentista
+    label: Dentista
+    search_query: dentista
+    google_type: dentist
+  - id: fisioterapista
+    label: Fisioterapista
+    search_query: fisioterapista
+    google_type: physiotherapist
+  - id: agenzia_immobiliare
+    label: Agenzia immobiliare
+    search_query: agenzia immobiliare
+    google_type: real_estate_agency
+  - id: autoscuola
+    label: Autoscuola
+    search_query: autoscuola
+    google_type: null
+  - id: officina
+    label: Officina
+    search_query: officina
+    google_type: car_repair
+  - id: carrozzeria
+    label: Carrozzeria
+    search_query: carrozzeria
+    google_type: car_repair
+  - id: impresa_edile
+    label: Impresa edile
+    search_query: impresa edile
+    google_type: null
+  - id: artigiano
+    label: Artigiano
+    search_query: artigiano
+    google_type: null
+  - id: fotografo
+    label: Fotografo
+    search_query: fotografo
+    google_type: photographer
+  - id: bb
+    label: B&B
+    search_query: bed and breakfast
+    google_type: bed_and_breakfast
+  - id: hotel
+    label: Hotel
+    search_query: hotel
+    google_type: lodging
+  - id: negozio
+    label: Negozio
+    search_query: negozio
+    google_type: store
