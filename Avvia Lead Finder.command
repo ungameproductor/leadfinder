@@ -11,10 +11,12 @@ already_up() {
   curl -sf "$HEALTH" >/dev/null 2>&1
 }
 
-if already_up; then
-  open "$URL"
-  exit 0
-fi
+needs_frontend_build() {
+  local dist="$ROOT/frontend/dist/index.html"
+  [[ ! -f "$dist" ]] && return 0
+  find "$ROOT/frontend/src" "$ROOT/frontend/index.html" "$ROOT/frontend/package.json" "$ROOT/frontend/vite.config.ts" \
+    -newer "$dist" 2>/dev/null | grep -q .
+}
 
 if [[ ! -x "$UVICORN" ]]; then
   echo "Ambiente Python non trovato (.venv)."
@@ -25,14 +27,19 @@ if [[ ! -x "$UVICORN" ]]; then
   exit 1
 fi
 
-if [[ ! -f "$ROOT/frontend/dist/index.html" ]]; then
+if needs_frontend_build; then
   if [[ ! -x "$(command -v npm)" ]]; then
-    echo "UI non compilata e npm non è disponibile."
+    echo "UI da ricompilare e npm non è disponibile."
     read -r -p "Premi Invio per chiudere…"
     exit 1
   fi
-  echo "Prima compilazione dell'interfaccia…"
+  echo "Compilazione dell'interfaccia…"
   (cd "$ROOT/frontend" && npm install && npm run build)
+fi
+
+if already_up; then
+  open "$URL"
+  exit 0
 fi
 
 if lsof -nP -iTCP:8000 -sTCP:LISTEN >/dev/null 2>&1; then
