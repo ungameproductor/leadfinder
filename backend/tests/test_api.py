@@ -84,6 +84,12 @@ def test_search_job_idempotent_with_mock(client: TestClient, db, monkeypatch):
     rows, total = lead_repo.list_leads(db, q="Idem Bar")
     assert total == 1
     assert rows[0].priority == "A"
+    scoped, scoped_total = lead_repo.list_leads(db, run_id=run.id, only_new=True)
+    assert scoped_total == 1
+    assert scoped[0].name == "Idem Bar"
+    facets = client.get("/api/leads/facets").json()
+    assert "Milano" in facets["cities"]
+    assert any(item["id"] == run.id for item in facets["runs"])
 
 
 def test_search_endpoint_does_not_block(client: TestClient, monkeypatch):

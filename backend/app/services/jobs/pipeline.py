@@ -107,6 +107,7 @@ def run_search_job(db: Session, run_id: str, request: SearchRequest) -> None:
             lead, is_new, _confidence = lead_repo.upsert_candidate(db, candidate)
             if lead.contact_status == "do_not_contact":
                 continue
+            lead_repo.link_run_lead(db, run_id, lead.id, is_new=is_new)
             if is_new:
                 created += 1
             if lead.id not in seen_ids:

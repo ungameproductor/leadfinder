@@ -94,6 +94,7 @@ class LeadOut(BaseModel):
     manual_status: str
     contact_status: str
     quality_data_insufficient: bool
+    is_new: bool | None = None
 
     model_config = {"from_attributes": True}
 

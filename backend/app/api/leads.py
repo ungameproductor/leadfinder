@@ -46,7 +46,13 @@ def serialize_lead(lead) -> LeadOut:
         manual_status=lead.manual_status,
         contact_status=lead.contact_status,
         quality_data_insufficient=lead.quality_data_insufficient,
+        is_new=getattr(lead, "is_new", None),
     )
+
+
+@router.get("/leads/facets")
+def lead_facets(db: Session = Depends(get_db)) -> dict:
+    return lead_repo.lead_facets(db)
 
 
 @router.get("/leads")
@@ -55,6 +61,9 @@ def list_leads(
     q: str | None = None,
     priority: str | None = None,
     category: str | None = None,
+    city: str | None = None,
+    run_id: str | None = None,
+    only_new: bool = False,
     website_status: str | None = None,
     manual_status: str | None = None,
     has_email: bool | None = None,
@@ -68,6 +77,9 @@ def list_leads(
         q=q,
         priority=priority,
         category=category,
+        city=city,
+        run_id=run_id,
+        only_new=only_new,
         website_status=website_status,
         manual_status=manual_status,
         has_email=has_email,

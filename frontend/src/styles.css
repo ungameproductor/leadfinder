@@ -259,7 +259,11 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .filters, .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 
-.filters input, .filters select, input, select, textarea {
+.filters input:not([type="checkbox"]):not([type="radio"]),
+.filters select,
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
   background: #111318;
   border: 1px solid var(--input);
   border-radius: var(--radius);
@@ -282,16 +286,25 @@ input[type="checkbox"] {
 }
 
 .table-wrap {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
   background: var(--card-grad);
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 0.98rem;
+}
+
+.leads-table th,
+.leads-table td {
+  white-space: nowrap;
 }
 
 th, td {
@@ -340,6 +353,20 @@ td a:hover { color: var(--primary); }
 .prio-C {
   background: var(--muted);
   color: var(--muted-foreground);
+}
+
+.tag-new {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: var(--radius);
+  background: var(--neon-green);
+  color: var(--primary-foreground);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 .prio.large { font-size: 1.4rem; padding: 8px 16px; }

@@ -51,6 +51,20 @@ export type Lead = {
   manual_status: string;
   contact_status: string;
   quality_data_insufficient: boolean;
+  is_new?: boolean | null;
+};
+
+export type LeadFacets = {
+  cities: string[];
+  categories: string[];
+  runs: {
+    id: string;
+    city: string | null;
+    status: string;
+    started_at: string | null;
+    results_count: number;
+    new_count: number;
+  }[];
 };
 
 export type Stats = {
@@ -93,6 +107,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   config: () => request<AppConfig>("/api/config/categories"),
   stats: () => request<Stats>("/api/stats"),
+  facets: () => request<LeadFacets>("/api/leads/facets"),
   leads: (params: Record<string, string | undefined>) => {
     const q = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => {

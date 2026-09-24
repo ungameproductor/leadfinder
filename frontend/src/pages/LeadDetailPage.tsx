@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { api, type Lead } from "../api";
 
 export default function LeadDetailPage() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const listQuery = searchParams.toString();
   const [lead, setLead] = useState<Lead | null>(null);
   const [notes, setNotes] = useState("");
   const [busy, setBusy] = useState(false);
@@ -37,7 +39,7 @@ export default function LeadDetailPage() {
   return (
     <section className="stack">
       <p>
-        <Link to="/lead">← Elenco</Link>
+        <Link to={listQuery ? `/lead?${listQuery}` : "/lead"}>← Elenco</Link>
       </p>
       <div className="intro">
         <div>

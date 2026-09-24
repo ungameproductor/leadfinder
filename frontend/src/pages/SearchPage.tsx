@@ -124,7 +124,7 @@ export default function SearchPage() {
           {busy ? "Job in corso…" : "Avvia ricerca"}
         </button>
         {run && ["completed", "completed_with_errors"].includes(run.status) && (
-          <button className="button ghost" onClick={() => navigate("/lead")}>
+          <button className="button ghost" onClick={() => navigate(`/lead?run=${run.id}`)}>
             Apri lead ({run.results_count})
           </button>
         )}

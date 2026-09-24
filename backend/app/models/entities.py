@@ -48,6 +48,14 @@ class Lead(Base):
     quality_data_insufficient: Mapped[bool] = mapped_column(Boolean, default=False)
 
 
+class RunLead(Base):
+    __tablename__ = "run_leads"
+
+    run_id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    lead_id: Mapped[str] = mapped_column(String(36), primary_key=True, index=True)
+    is_new: Mapped[bool] = mapped_column(Boolean, default=False)
+
+
 class VerificationRun(Base):
     __tablename__ = "verification_runs"
 
